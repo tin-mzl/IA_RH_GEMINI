@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA RH - Entretien avec Gemini</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>IA DRH <span>- Propulsé par Gemini Live</span></h1>
+        <div id="user-info" style="display: none;">
+            <span id="user-name"></span>
+            <button id="btn-logout" class="btn-small">Déconnexion</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION AUTHENTIFICATION -->
+        <section id="auth-section">
+            <div class="auth-box">
+                <h2>Connexion</h2>
+                <form id="form-login">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Mot de passe" required>
+                    <button type="submit">Se connecter</button>
+                </form>
+                <p>Pas de compte ? <a href="#" id="link-register">S'inscrire</a></p>
+            </div>
+            <div class="auth-box" id="register-box" style="display: none;">
+                <h2>Inscription</h2>
+                <form id="form-register">
+                    <input type="text" id="reg-nom" placeholder="Nom" required>
+                    <input type="text" id="reg-prenom" placeholder="Prénom" required>
+                    <input type="email" id="reg-email" placeholder="Email" required>
+                    <input type="password" id="reg-password" placeholder="Mot de passe" required>
+                    <button type="submit">Créer un compte</button>
+                </form>
+                <p>Déjà un compte ? <a href="#" id="link-login">Se connecter</a></p>
+            </div>
+        </section>
+
+        <!-- SECTION APPLICATION (Visible une fois connecté) -->
+        <section id="app-section" style="display: none;">
+            
+            <!-- ETAPE 1 : PREPARATION -->
+            <div id="interface-preparation">
+                <div class="card">
+                    <h3>1. Téléchargez votre CV (PDF)</h3>
+                    <input type="file" id="input-cv" accept="application/pdf">
+                    <button id="btn-upload-cv">Envoyer le CV</button>
+                    <p id="upload-status"></p>
+                </div>
+
+                <div class="card">
+                    <h3>2. Choisissez une offre d'emploi</h3>
+                    <select id="select-offre">
+                        <option value="">-- Sélectionner une offre --</option>
+                    </select>
+                </div>
+
+                <div class="card action-card">
+                    <h3>3. Lancer l'entretien</h3>
+                    <p>Assurez-vous que votre microphone est activé. L'IA Gemini vous posera des questions oralement.</p>
+                    <button id="btn-demarrer" disabled>Démarrer l'entretien en direct</button>
+                </div>
+            </div>
+
+            <!-- ETAPE 2 : ENTRETIEN EN DIRECT -->
+            <div id="interface-entretien" style="display: none;">
+                <div class="live-header">
+                    <div class="recording-indicator">
+                        <div class="pulse-dot"></div>
+                        <span>Entretien en cours (Microphone actif)</span>
+                    </div>
+                    <button id="btn-terminer" class="btn-danger">Terminer l'entretien</button>
+                </div>
+                
+                <div id="chat-container" class="chat-box">
+                    <!-- Les messages (transcription) apparaîtront ici -->
+                </div>
+            </div>
+
+            <!-- ETAPE 3 : RESULTATS / EVALUATION -->
+            <div id="interface-resultat" style="display: none;">
+                <div class="card">
+                    <h2>Bilan de l'entretien</h2>
+                    <div id="evaluation-content">
+                        <!-- Le JSON de l'évaluation sera formaté ici -->
+                    </div>
+                    <button id="btn-retour-accueil" class="btn-primary" style="margin-top: 20px;">Retour à l'accueil</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
